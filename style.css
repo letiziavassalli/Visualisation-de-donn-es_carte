@@ -1,0 +1,48 @@
+ /* Pour afficher la carte en plein écran */
+body {
+         margin: 0;
+         padding: 0;
+}
+
+svg {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+}
+
+#traités {
+    display: none;
+    position: absolute;
+    background: white;
+    padding: 10px;
+    border: 1px solid black;
+    max-width: 700px;
+    min-width: 500px;
+    font-size: 25px;
+}
+
+h1 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin: 0;
+    color: black;
+    font-size: 30px;
+}
+
+h2 {
+    position: absolute;
+    top: 40px;
+    left: 10px; 
+    margin: 0;
+    color: black;
+    font-size: 27px;
+    font-style: italic; 
+}
+
+#intro {
+    color: black;
+    font-size: 25px;
+    bottom: 10px;
+    left: 10px; 
+}
