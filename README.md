@@ -1,5 +1,5 @@
 # Cours_VD_SP2026
-# Titre: Les traités stipulés en Europe entre 1919-1955
+# Les traités stipulés en Europe entre 1919-1955
 L'objectif de ce projet est de représenter sur une carte certains traités qui ont été conclus en Europe entre des États du monde entier. La période prise en compte s'étend de 1919, donc après la fin de la Première Guerre mondiale, à 1955. Cette date marque l'un des points culminants du début de la Guerre froide.
 La seule exception concernant un traité non conclu en Europe est celui relatif à la création de l'OTAN (Washington DC, 1949). J'ai décidé de l'intégrer car il concerne la plupart des États européens et constitue l'un des éléments fondamentaux du début de la Guerre froide et de la naissance des deux blocs.
 L'idée de ce projet est née de deux centres d'intérêt principaux. Le premier est lié à mon parcours universitaire : j'ai obtenu un bachelor en histoire et en histoire de l'art et je suis particulièrement passionnée par l'histoire contemporaine. La deuxième raison, dans le cadre du cours de visualisation de données, est que j'ai été fascinée par la création d'une carte et que je souhaitais explorer et approfondir ce domaine.
