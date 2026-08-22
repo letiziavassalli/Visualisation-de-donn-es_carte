@@ -22,40 +22,31 @@ Comme il s'agit d'une carte, un fichier geoJSON est nécessaire pour représente
 
 ### 1.1 Présentation des données 
 Les données collectées peuvent être consultées dans le fichier CSV intitulé [Tableau_traités.csv]. On y trouve les données suivantes: 
-1) id
-Même si cela n'apparaît pas dans l'affichage, j'ai attribué un identifiant à chaque traité, simplement pour mettre de l'ordre dans la liste. 
+1) id : même si cela n'apparaît pas dans l'affichage, j'ai attribué un identifiant à chaque traité, simplement pour mettre de l'ordre dans la liste. 
 
-2) nom_traité
-Il s'agit du nom du traité. Comme nous l'avons déjà mentionné, le terme « traité » est polysémique ; on trouve donc d'autres appellations telles que « accord », « pacte » ou « conférence ». Il convient de noter que le nom du document reprend souvent le lieu où les parties se sont réunies.
+2) nom_traité : il s'agit du nom du traité. Comme nous l'avons déjà mentionné, le terme « traité » est polysémique ; on trouve donc d'autres appellations telles que « accord », « pacte » ou « conférence ». Il convient de noter que le nom du document reprend souvent le lieu où les parties se sont réunies.
 
-3) année
-La date à laquelle l'accord a été signé. Il convient de noter que, souvent, la date peut faire référence à la signature d'un premier document d'accord, mais que l'entrée en vigueur n'intervient qu'après la ratification de ce document. Celle-ci peut en effet avoir lieu ultérieurement, parfois même plusieurs mois plus tard. Dans ce cas, on se réfère à la date de signature de l'accord. 
+3) année: la date à laquelle l'accord a été signé. Il convient de noter que, souvent, la date peut faire référence à la signature d'un premier document d'accord, mais que l'entrée en vigueur n'intervient qu'après la ratification de ce document. Celle-ci peut en effet avoir lieu ultérieurement, parfois même plusieurs mois plus tard. Dans ce cas, on se réfère à la date de signature de l'accord. 
 
-4) lieu
-Lieu de la rencontre.
+4) lieu: lieu de la rencontre.
 
-5) pays
-Pays où la rencontre a eu lieu.
+5) pays : pays où la rencontre a eu lieu.
 
-6) acteurs
-Par « acteurs », on entend tous les pays qui ont signé les documents. Le pays hôte des négociations n'en fait pas nécessairement partie.
+6) acteurs : par « acteurs », on entend tous les pays qui ont signé les documents. Le pays hôte des négociations n'en fait pas nécessairement partie.
 
-7) lat
-8) long 
-Ces deux éléments indiquent le lieu où les négociations ont eu lieu. C'est la ville précise qui sert de référence, et non le pays. Ces deux éléments sont nécessaires pour localiser le lieu le plus précisément possible sur la carte.
+7) lat &
+8) long : ces deux éléments indiquent le lieu où les négociations ont eu lieu. C'est la ville précise qui sert de référence, et non le pays. Ces deux éléments sont nécessaires pour localiser le lieu le plus précisément possible sur la carte.
 
-9) description
-Dans cette description, j'ai rassemblé quelques informations sur le contenu du traité et les raisons qui ont poussé les nations à le signer.
+9) description: dans cette description, j'ai rassemblé quelques informations sur le contenu du traité et les raisons qui ont poussé les nations à le signer.
 
-10) source 
-La source où j'ai trouvé ces informations.
+10) source : la source où j'ai trouvé ces informations.
 
 ### 1.2 Étapes pré-traitement des données 
 Comme j'avais créé moi-même le fichier CSV, je n'ai pas eu à effectuer de prétraitements particuliers. Je n'ai dû apporter qu'une seule modification pour que les données fonctionnent. Lorsque j'ai converti la feuille Excel (format .xlsx) en CSV, je ne sais pas pourquoi, mais le fichier comportait trois guillemets (par ex. """TR1""") ; j'ai donc dû supprimer les guillemets superflus et les ajouter lorsque cela était nécessaire, c'est-à-dire dans les textes plus longs et descriptifs.
 
 ## 2. Explication de la visualisation produite 
 ### 2.1 index.html
-Pour mon projet, j'ai décidé d'utiliser le script comme module (type="module") afin de pouvoir utiliser await directement pour charger les données, comme on peut le voir dans ![html](images/2.HTML.png).
+Pour mon projet, j'ai décidé d'utiliser le script comme module (type="module") afin de pouvoir utiliser await directement pour charger les données, comme on peut le voir dans la première image <br> ![html](images/2.HTML.png) <br>
 
 Le reste du code est visible sur cette image : ![html](images/1.HTML.png).
     J'ai décidé de créer directement dans le code HTML le fichier SVG contenant la carte. Cela m'a également permis d'appliquer directement le style via CSS (voir le code). En réalité, j'ai rédigé le texte à l'intérieur de la balise "body" après avoir créé tout le code nécessaire à l'affichage de la carte. J'ai jugé utile d'ajouter directement sur la page le titre du travail ainsi qu'une brève description (introduction) de ce que l'on peut y trouver. J’ai ensuite ajouté une liste de tous les traités répertoriés, afin d’offrir un aperçu général du contenu, que l’on peut ensuite approfondir en consultant les différentes cercles. Pour les balises "body", "svg", "h1", "h2" et "#intro", j’ai utilisé des styles CSS (cf. style.css).
