@@ -46,33 +46,33 @@ Comme j'avais créé moi-même le fichier CSV, je n'ai pas eu à effectuer de pr
 
 ## 2. Explication de la visualisation produite 
 ### 2.1 index.html
-Pour mon projet, j'ai décidé d'utiliser le script comme module (type="module") afin de pouvoir utiliser await directement pour charger les données, comme on peut le voir dans la première image <br> ![html](images/2.HTML.png) <br>
+Pour mon projet, j'ai décidé d'utiliser le script comme module (type="module") afin de pouvoir utiliser await directement pour charger les données, comme on peut le voir dans la première image : <br> ![html](images/2.HTML.png) <br>
 
-Le reste du code est visible sur cette image : ![html](images/1.HTML.png).
-    J'ai décidé de créer directement dans le code HTML le fichier SVG contenant la carte. Cela m'a également permis d'appliquer directement le style via CSS (voir le code). En réalité, j'ai rédigé le texte à l'intérieur de la balise "body" après avoir créé tout le code nécessaire à l'affichage de la carte. J'ai jugé utile d'ajouter directement sur la page le titre du travail ainsi qu'une brève description (introduction) de ce que l'on peut y trouver. J’ai ensuite ajouté une liste de tous les traités répertoriés, afin d’offrir un aperçu général du contenu, que l’on peut ensuite approfondir en consultant les différentes cercles. Pour les balises "body", "svg", "h1", "h2" et "#intro", j’ai utilisé des styles CSS (cf. style.css).
+Le reste du code est visible sur cette image : <br> ![html](images/1.HTML.png) <br>
+    J'ai décidé de créer directement dans le code HTML le fichier SVG contenant la carte. Cela m'a également permis d'appliquer directement le style via CSS (voir le code). En réalité, j'ai rédigé le texte à l'intérieur de la balise "body" après avoir créé tout le code nécessaire à l'affichage de la carte. J'ai jugé utile d'ajouter directement sur la page le titre du travail ainsi qu'une brève description (introduction) de ce que l'on peut y trouver. J’ai ensuite ajouté une liste de tous les traités répertoriés, afin d’offrir un aperçu général du contenu, que l’on peut ensuite approfondir en consultant les différents cercles. Pour les balises "body", "svg", "h1", "h2" et "#intro", j’ai utilisé des styles CSS (cf. style.css).
 
 ### 2.2 script.js
-La première étape a consisté à importer les données CSV et GeoJSON ![points_1_2](images/1_2_JS.png). 
+La première étape a consisté à importer les données CSV et GeoJSON : <br> ![points_1_2](images/1_2_JS.png)
 
-À l'étape 3, j'ai procédé à la création des projections et à la génération des chemins : ![point_3](images/3_JS.png).
+À l'étape 3, j'ai procédé à la création des projections et à la génération des chemins : <br> ![point_3](images/3_JS.png) <br>
     J'ai commencé par déclarer les variables "width" et "height", en les adaptant aux dimensions de l'écran. J'ai ensuite laissé une marge (pad) de 50 pour éviter que la carte ne touche les bords de l'écran. 
     J'ai ensuite sélectionné le SVG (déjà présent dans le code HTML) et je lui ai attribué les dimensions de la fenêtre.
     Avec « const projection = d3.geoMercator().fitExtent (etc.) », j’ai mis en place le système de projection, dans lequel les coordonnées géographiques sont converties en pixels à l’écran. La carte est ainsi adaptée.
     Enfin, on trouve « const pathGenerator = d3.geoPath().projection(projection); », c’est-à-dire l’outil qui transforme les données géographiques du GeoJSON en instructions de dessin SVG. Il utilise la projection pour dessiner chaque point.
 
-Le point 4 correspond à la création d'un groupe "g" au sein du SVG ![point_4](images/4_JS.png).
+Le point 4 correspond à la création d'un groupe "g" au sein du SVG : <br> ![point_4](images/4_JS.png) <br>
     Ce groupe "g" regroupe tous les éléments de la carte, c'est-à-dire les pays et les cercles (cf. point 5).
     J'ai ensuite procédé au tracé de tous les pays à l'aide de « g.selectAll(« path ») (...) ». Il s'agit d'une jointure de données : geoData.features est le tableau des pays du GeoJSON, dans lequel chaque pays devient un chemin. Le pathGenerator convertit les données géographiques au format SVG et les deux « style » correspondent à la couleur de remplissage et à la couleur de contour.
     Au cours de ces étapes, je me suis rendu compte qu’il serait intéressant et certainement plus interactif d’ajouter un zoom sur la carte, notamment pour mieux voir les cercles (ceux-ci sont créés ultérieurement). Le zoom s’applique à l’ensemble du conteneur "g", ce qui permet de déplacer et de redimensionner l’ensemble en même temps. Pour la création du zoom, j’ai consulté ce site https://d3js.org/d3-zoom et je me suis fait aider par NotebookLM, une IA, pour l’organisation des informations (cette partie du zoom est donc créée avec l’aide de l’IA). <.scaleExtent> limite le zoom entre un minimum de 8x et un maximum de 12x. <.on> est l’événement qui est créé. Ces valeurs ont été choisies afin de permettre une visualisation suffisamment détaillée de l'Europe sans perdre le contexte géographique général. 
 
-Le point numéro 5 consiste à créer des cercles-points pour chaque traité ![point_5](images/5_JS.png). 
+Le point numéro 5 consiste à créer des cercles-points pour chaque traité : <br> ![point_5](images/5_JS.png) <br>
     Les quatre premières lignes de cette partie du code servent à sélectionner tous les cercles du groupe "g", à relier les données du fichier CSV et à créer un cercle pour chaque élément trouvé.
     Comme il s'agit d'une carte, les projections entrent à nouveau en jeu. On récupère les coordonnées géographiques de chaque traité (d.long et d.lat) et on les convertit en pixels. Le "0" prend la coordonnée x et va dans cx, tandis que "1" prend la coordonnée y et va dans cy (car la fonction projection renvoie un tableau [x,y]). 
     J’ai ensuite ajouté quelques attributs, tels que le rayon du cercle et la couleur des cercles. J’ai choisi la couleur « deeppink » pour les cercles afin de créer un meilleur contraste avec le vert des pays. 
 
-Le dernier point, le numéro 6, sert à ajouter un écouteur d'événement à chaque cercle ![point_6](images/6_JS.png).
+Le dernier point, le numéro 6, sert à ajouter un écouteur d'événement à chaque cercle : <br> ![point_6](images/6_JS.png) <br>
     J'ai choisi comme écouteur d'événement un « clic » et cette fonction s'exécute à chaque fois que l'on clique sur un cercle. 
-    Auparavant, j'ai créé un "div" dans le code HTML (cf. ![html](images/2.HTML.png)), car je trouve ce système plus pratique. En le sélectionnant via d3.select(« #traités »).style(“display”, « block »), on le rend visible à l'écran, car dans le CSS, il est masqué par display:none. 
+    Auparavant, j'ai créé un "div" dans le code HTML <br> ![html](images/2.HTML.png) <br> car je trouve ce système plus pratique. En le sélectionnant via d3.select(« #traités »).style(“display”, « block »), on le rend visible à l'écran, car dans le CSS, il est masqué par display:none. 
     Ensuite, grâce aux deux « .style », je positionne les "div" à l'endroit où j'ai cliqué sur la carte à l'aide de « e.pageX » et « e.pageY ». Nous avons ensuite « + « px » » car .style() dans D3 définit des propriétés CSS et, pour que le navigateur puisse lire les valeurs de « e.pageX » et « e.pageY », il faut ajouter l’unité px (pixel).
     Enfin, j’ai trouvé la propriété « .html » sur https://devdocs.io/d3~7/d3-selection#selection_html, qui me permet d’insérer du code HTML formaté à l’intérieur de "div". J’ai utilisé « ${} » pour insérer des variables dans la chaîne de caractères et j’ai sélectionné chaque colonne du fichier CSV pour importer les données via d.nom_traité, d.année, d.lieu, etc.
 
