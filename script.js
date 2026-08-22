@@ -60,9 +60,58 @@ g.selectAll("circle")
     .attr("r", 2)
     .style("fill", "deeppink"); 
 
+
+
 //6. Ajouter le "click" pour visualiser le contenu
+//6.1 Corriger les noms de certains pays par rapport au fichier CSV. Pour cette partie, j'ai demandé de l'aide à l'IA « Gemini », cf. README
+const dictionnairePays = {
+    "URSS": ["Russie", "Ukraine", "Biélorussie", "Estonie", "Lettonie", "Lituanie", "Moldavie"],
+    "Tchécoslovaquie": ["Tchéquie", "Slovaquie"],
+    "Grande-Bretagne": ["Royaume-Uni"],
+    "Empire Ottoman": ["Turquie"]
+};
+
+
 d3.selectAll("circle")
     .on('click', function (e,d){ //ajouter un event listener
+
+      // --- PASSO 2: RESET DELLA MAPPA ---
+        // Rimettiamo tutti i paesi al colore base (lightgreen) ad ogni nuovo clic
+        g.selectAll("path").style("fill", "lightgreen");
+
+        // --- PASSO 3: LEGGERE E COLORARE I PAESI COINVOLTI ---
+        // 3a. Prendiamo la lista degli attori dal CSV e la dividiamo usando la virgola
+        let acteursList = d.acteurs.split(',').map(p => p.trim());
+        
+        // 3b. Creiamo una lista finale vuota dove metteremo i nomi da cercare sulla mappa
+        let paysAColorer = [];
+
+        // 3c. Controlliamo ogni attore: se è nel dizionario lo "traduciamo", altrimenti lo teniamo così
+        acteursList.forEach(acteur => {
+            if (dictionnairePays[acteur]) {
+                // Se è nel dizionario (es. "URSS"), aggiungi "Russie", "Ukraine", ecc.
+                paysAColorer = paysAColorer.concat(dictionnairePays[acteur]);
+            } else {
+                // Altrimenti aggiungi semplicemente il nome (es. "France")
+                paysAColorer.push(acteur);
+            }
+        });
+
+        // 3d. Coloriamo i paesi sulla mappa
+        g.selectAll("path")
+            .style("fill", function(geoFeature) {
+                // Leggiamo il nome in francese direttamente dal tuo file geo.json
+                let nomDuPaysMap = geoFeature.properties.name_fr; 
+                
+                // Se il nome sulla mappa è nella nostra lista dei paesi da colorare, lo facciamo arancione
+                if (paysAColorer.includes(nomDuPaysMap)) {
+                    return "orange";
+                } else {
+                    return "lightgreen";
+                }
+            });
+
+      
          d3.select("#traités")
         .style("display", "block")
         .style("left", e.pageX + "px")
