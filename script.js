@@ -42,7 +42,7 @@ g.selectAll("path")
 //4.3 définition du zoom 
 //pour la création de cette partie du code: voir dans le README
 let zoom = d3.zoom()
-    .scaleExtent([8,12])
+    .scaleExtent([1,12])
     .on("zoom", function(event) {
         g.attr("transform", event.transform);
     });
