@@ -68,6 +68,7 @@ d3.selectAll("circle")
         .style("left", e.pageX + "px")
         .style("top", e.pageY + "px")
         .html(`
+        <button style="position: absolute; right: 10px; top: 10px; cursor: pointer;" onclick="this.parentNode.style.display='none'">X</button>
             <b>${d.nom_traité}</b><br>
                 Date: ${d.année}<br>
                 Lieu: ${d.lieu}<br>
