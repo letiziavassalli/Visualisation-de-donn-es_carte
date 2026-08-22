@@ -80,6 +80,16 @@ Une fois tout cela terminé, j'ai essayé de régler deux derniers détails. Le 
     Comme on peut le voir sur le fichier CSV ou sur la carte, il y a plusieurs cercles dans la région de Paris : certains se chevauchaient complètement (les traités ayant été signés à Paris) et d'autres ont été conclus dans les environs de la capitale française. J'ai donc modifié manuellement les coordonnées de ces traités pour les espacer davantage. J’ai cherché sur Internet des solutions pour espacer les cercles, mais elles me semblaient un peu trop compliquées pour mes compétences très basiques. 
     Dans le cas des deux traités signés au Vatican (cf. fichier CSV ou carte), j’ai procédé de la même manière : j’ai espacé manuellement les points afin de rendre les cercles plus visibles.
 
+Cette partie 6 a ensuite été modifiée afin de rendre la carte plus interactive. Une commande a été ajoutée pour permettre de fermer la fenêtre dans laquelle s'affichent les informations relatives au traité, via la fonction  <button style="position: absolute; right: 10px; top: 10px; cursor: pointer;" onclick="this.parentNode.style.display=“none”">X</button>. Il est en effet intéressant d’utiliser la balise HTML pour ajouter directement cette fonctionnalité.
+Le reste du code a pour objectif suivant : en cliquant sur le point rose, les pays ayant signé ce traité changent de couleur.
+    Dans un premier temps, j’ai dû adapter certains noms de traités par rapport à ce qui figurait dans le document GeoJSON. J’ai moi-même pris conscience des problèmes de traduction potentiels et j’ai demandé conseil à Gemini sur la manière d’écrire correctement les noms des pays. <br> ![html](images/7_JS.png) <br>
+    Ensuite, pour la partie concernant la boucle ForEach, je me suis presque entièrement aidée de l’IA (Gemini). <br> ![html](images/8_JS.png) <br>
+En général, le principe m’était clair, mais le transposer en code était un peu trop difficile pour moi. Le processus est le suivant : après avoir sélectionné les pays et associé les acteurs, ces derniers sont colorés en orange lorsque l’on clique sur le point rose, comme on peut le voir dans l’exemple suivant :
+    <br> ![html](images/9_JS.png)<br>
+On obtient ainsi une carte encore plus interactive.
+
+La partie désormais intitulée 6.3 correspond au code décrit précédemment.
+
 ## 3. Conclusion: limites et perspectives
 Avec ce projet, j'ai cherché à explorer le fonctionnement de la création de cartes à l'aide de D3. J'ai trouvé l'ensemble du processus très intéressant et le fait de développer un projet personnel m'a permis de mieux comprendre la logique de fonctionnement de D3, en particulier la création de SVG et d'éléments (tels que les cercles), mais aussi de commencer à appréhender le caractère dynamique des données.
 J’ai également cherché à approfondir ce que j’avais vu pendant le cours en recherchant d’autres fonctionnalités sur des blogs ou d’autres sites. Cela m’a également permis d’explorer davantage le potentiel de cette bibliothèque. 
