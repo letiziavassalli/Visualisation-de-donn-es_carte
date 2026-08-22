@@ -74,36 +74,34 @@ const dictionnairePays = {
     "Pays Bas": ["Pays-Bas"]
 };
 
-
 d3.selectAll("circle")
     .on('click', function (e,d){ //ajouter un event listener
-// 6.2 Parte del codice che serve per colorare i paesi coinvolti nella stipulazione del trattato. 
-        // i paesi devono tornare al colore base "lightgreen" quando si clicca 
+// 6.2 Extrait du code permettant de colorer les pays ayant participé à la conclusion du traité. 
+        // Les pays doivent revenir à la couleur de base « lightgreen » lorsqu'on clique dessus 
         g.selectAll("path").style("fill", "lightgreen");
 
-        //Leggere e coloare i paesi coinvolti. Per questa parte ho chiesto alcuni consigli all'IA "Gemini" perché alcuni passaggi erano troppo complessi per le mie conoscenze (cf. README).
-        // Prendiamo la lista degli attori dal CSV e la dividiamo usando la virgola
+        //Lire et colorier les pays concernés. Pour cette partie, j'ai demandé aide à l'IA « Gemini », car certaines étapes étaient trop complexes pour m es connaissances (cf. README).
+        // Nous récupérons la liste des acteurs depuis le fichier CSV et nous la séparons à l'aide de la virgule
         let acteursList = d.acteurs.split(',').map(p => p.trim());
-        // Creiamo una lista finale vuota dove metteremo i nomi da cercare sulla mappa
+        // Créons une liste finale vide dans laquelle nous ajouterons les noms à rechercher sur la carte
         let paysAColorer = [];
-        // Utilizzare un forEach per percorrere tutti gli attori. Se è nel dizionario verrà "tradotto"
+        // Utilisez une boucle « forEach » pour parcourir tous les acteurs. S'il figure dans le dictionnaire, il sera « traduit »
         acteursList.forEach(acteur => {
             if (dictionnairePays[acteur]) {
-                // Se è nel dizionario (es. "URSS"), aggiungi "Russie", "Ukraine", ecc.
+                //Si le terme figure dans le dictionnaire (par ex. « URSS »), ajoute « Russie », « Ukraine », etc.
                 paysAColorer = paysAColorer.concat(dictionnairePays[acteur]);
             } else {
-                // Altrimenti aggiungi semplicemente il nome (es. "France")
+                // Sinon, ajoute simplement le nom (par ex. « France »)
                 paysAColorer.push(acteur);
             }
         });
 
-        // Ultima parte per colorare i paesi sulla mappa
+        //  Dernière partie : colorier les pays sur la carte
         g.selectAll("path")
             .style("fill", function(geoFeature) {
-                // Leggiamo il nome in francese direttamente dal tuo file geo.json
+                // Nous lisons le nom en français directement à partir du fichier geo.json
                 let nomDuPaysMap = geoFeature.properties.name_fr; 
-                
-                // Se il nome sulla mappa è nella nostra lista dei paesi da colorare, lo facciamo arancione
+                // Si le nom figurant sur la carte figure dans notre liste des pays à colorier, nous le colorions en orange
                 if (paysAColorer.includes(nomDuPaysMap)) {
                     return "orange";
                 } else {
@@ -111,7 +109,7 @@ d3.selectAll("circle")
                 }
             });
 
-      
+    // 6.3 Création de l'encadré blanc dans lequel apparaîtra le texte relatif au traité sélectionné
         d3.select("#traités")
         .style("display", "block")
         .style("left", e.pageX + "px")
