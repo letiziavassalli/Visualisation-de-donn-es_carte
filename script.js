@@ -49,7 +49,6 @@ let zoom = d3.zoom()
 
 svg.call(zoom);
 
-
 //5. Création de points sur la carte 
 g.selectAll("circle")
     .data(data)
@@ -60,33 +59,34 @@ g.selectAll("circle")
     .attr("r", 2)
     .style("fill", "deeppink"); 
 
-
-
 //6. Ajouter le "click" pour visualiser le contenu
 //6.1 Corriger les noms de certains pays par rapport au fichier CSV. Pour cette partie, j'ai demandé de l'aide à l'IA « Gemini », cf. README
 const dictionnairePays = {
     "URSS": ["Russie", "Ukraine", "Biélorussie", "Estonie", "Lettonie", "Lituanie", "Moldavie"],
     "Tchécoslovaquie": ["Tchéquie", "Slovaquie"],
     "Grande-Bretagne": ["Royaume-Uni"],
-    "Empire Ottoman": ["Turquie"]
+    "Empire Ottoman": ["Turquie"],
+    "URSS et pays du bloc soviétique": [
+        "Russie", "Ukraine", "Biélorussie", "Estonie", "Lettonie", "Lituanie", "Moldavie", 
+        "Pologne", "Tchéquie", "Slovaquie", "Hongrie", "Roumanie", "Bulgarie", "Albanie", "Allemagne"
+    ],
+    "USA": ["États-Unis"],
+    "Pays Bas": ["Pays-Bas"]
 };
 
 
 d3.selectAll("circle")
     .on('click', function (e,d){ //ajouter un event listener
-
-      // --- PASSO 2: RESET DELLA MAPPA ---
-        // Rimettiamo tutti i paesi al colore base (lightgreen) ad ogni nuovo clic
+// 6.2 Parte del codice che serve per colorare i paesi coinvolti nella stipulazione del trattato. 
+        // i paesi devono tornare al colore base "lightgreen" quando si clicca 
         g.selectAll("path").style("fill", "lightgreen");
 
-        // --- PASSO 3: LEGGERE E COLORARE I PAESI COINVOLTI ---
-        // 3a. Prendiamo la lista degli attori dal CSV e la dividiamo usando la virgola
+        //Leggere e coloare i paesi coinvolti. Per questa parte ho chiesto alcuni consigli all'IA "Gemini" perché alcuni passaggi erano troppo complessi per le mie conoscenze (cf. README).
+        // Prendiamo la lista degli attori dal CSV e la dividiamo usando la virgola
         let acteursList = d.acteurs.split(',').map(p => p.trim());
-        
-        // 3b. Creiamo una lista finale vuota dove metteremo i nomi da cercare sulla mappa
+        // Creiamo una lista finale vuota dove metteremo i nomi da cercare sulla mappa
         let paysAColorer = [];
-
-        // 3c. Controlliamo ogni attore: se è nel dizionario lo "traduciamo", altrimenti lo teniamo così
+        // Utilizzare un forEach per percorrere tutti gli attori. Se è nel dizionario verrà "tradotto"
         acteursList.forEach(acteur => {
             if (dictionnairePays[acteur]) {
                 // Se è nel dizionario (es. "URSS"), aggiungi "Russie", "Ukraine", ecc.
@@ -97,7 +97,7 @@ d3.selectAll("circle")
             }
         });
 
-        // 3d. Coloriamo i paesi sulla mappa
+        // Ultima parte per colorare i paesi sulla mappa
         g.selectAll("path")
             .style("fill", function(geoFeature) {
                 // Leggiamo il nome in francese direttamente dal tuo file geo.json
@@ -112,7 +112,7 @@ d3.selectAll("circle")
             });
 
       
-         d3.select("#traités")
+        d3.select("#traités")
         .style("display", "block")
         .style("left", e.pageX + "px")
         .style("top", e.pageY + "px")
