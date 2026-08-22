@@ -82,10 +82,10 @@ Une fois tout cela terminé, j'ai essayé de régler deux derniers détails. Le 
 
 Cette partie 6 a ensuite été modifiée afin de rendre la carte plus interactive. Une commande a été ajoutée pour permettre de fermer la fenêtre dans laquelle s'affichent les informations relatives au traité, via la fonction  <button style="position: absolute; right: 10px; top: 10px; cursor: pointer;" onclick="this.parentNode.style.display=“none”">X</button>. Il est en effet intéressant d’utiliser la balise HTML pour ajouter directement cette fonctionnalité.
 Le reste du code a pour objectif suivant : en cliquant sur le point rose, les pays ayant signé ce traité changent de couleur.
-    Dans un premier temps, j’ai dû adapter certains noms de traités par rapport à ce qui figurait dans le document GeoJSON. J’ai moi-même pris conscience des problèmes de traduction potentiels et j’ai demandé conseil à Gemini sur la manière d’écrire correctement les noms des pays. <br> ![html](images/7_JS.png) <br>
-    Ensuite, pour la partie concernant la boucle ForEach, je me suis presque entièrement aidée de l’IA (Gemini). <br> ![html](images/8_JS.png) <br>
+    Dans un premier temps, j’ai dû adapter certains noms de traités par rapport à ce qui figurait dans le document GeoJSON. J’ai moi-même pris conscience des problèmes de traduction potentiels et j’ai demandé conseil à Gemini sur la manière d’écrire correctement les noms des pays. <br> ![html](images/7.JS.png) <br>
+    Ensuite, pour la partie concernant la boucle ForEach, je me suis presque entièrement aidée de l’IA (Gemini). <br> ![html](images/8.JS.png) <br>
 En général, le principe m’était clair, mais le transposer en code était un peu trop difficile pour moi. Le processus est le suivant : après avoir sélectionné les pays et associé les acteurs, ces derniers sont colorés en orange lorsque l’on clique sur le point rose, comme on peut le voir dans l’exemple suivant :
-    <br> ![html](images/9_JS.png)<br>
+    <br> ![html](images/9.JS.png)<br>
 On obtient ainsi une carte encore plus interactive.
 
 La partie désormais intitulée 6.3 correspond au code décrit précédemment.
