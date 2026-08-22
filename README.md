@@ -84,7 +84,7 @@ Une fois tout cela terminé, j'ai essayé de régler deux derniers détails. Le 
 Avec ce projet, j'ai cherché à explorer le fonctionnement de la création de cartes à l'aide de D3. J'ai trouvé l'ensemble du processus très intéressant et le fait de développer un projet personnel m'a permis de mieux comprendre la logique de fonctionnement de D3, en particulier la création de SVG et d'éléments (tels que les cercles), mais aussi de commencer à appréhender le caractère dynamique des données.
 J’ai également cherché à approfondir ce que j’avais vu pendant le cours en recherchant d’autres fonctionnalités sur des blogs ou d’autres sites. Cela m’a également permis d’explorer davantage le potentiel de cette bibliothèque. 
 Néanmoins, je me rends compte que certains éléments pourraient être mieux mis en œuvre. Par exemple, le clic qui ouvre le "div" contenant les informations sur le traité ne se ferme pas si je clique sur un autre endroit de la page. Je n’arrivais pas à résoudre ce problème par moi-même et je ne voulais pas non plus recourir à l’intelligence artificielle pour cela. 
-J’aurais peut-être pu ajouter quelques traités supplémentaires, mais comme j’ai moi-même collecté les données et rédigé les descriptions, le travail aurait été plus long et plus exigeant, et j’aurais dû modifier la périodisation.
+J’aurais peut-être pu ajouter quelques traités supplémentaires, mais, comme j’ai moi-même collecté les données et rédigé les descriptions, le travail aurait été plus long et plus exigeant, et j’aurais dû modifier la périodisation.
 Pour améliorer le projet, on pourrait donc envisager d’étendre la périodisation et peut-être inclure d’autres continents.
 
 
