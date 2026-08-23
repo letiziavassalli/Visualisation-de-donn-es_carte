@@ -1,7 +1,7 @@
 # Cours_VD_SP2026
 # Les traités stipulés en Europe entre 1919-1955
 L'objectif de ce projet est de représenter sur une carte certains traités qui ont été conclus en Europe entre des États du monde entier. La période prise en compte s'étend de 1919, donc après la fin de la Première Guerre mondiale, à 1955. Cette date marque l'un des points culminants du début de la Guerre froide.
-La seule exception concernant un traité non conclu en Europe est celui relatif à la création de l'OTAN (Washington DC, 1949). J'ai décidé de l'intégrer car il concerne la plupart des États européens et constitue l'un des éléments fondamentaux du début de la Guerre froide et de la naissance des deux blocs.
+La seule exception concernant un traité non conclu en Europe est celle relative à la création de l'OTAN (Washington DC, 1949). J'ai décidé de l'intégrer, car il concerne la plupart des États européens et constitue l'un des éléments fondamentaux du début de la Guerre froide et de la naissance des deux blocs.
 L'idée de ce projet est née de deux centres d'intérêt principaux. Le premier est lié à mon parcours universitaire : j'ai obtenu un bachelor en histoire et en histoire de l'art et je suis particulièrement passionnée par l'histoire contemporaine. La deuxième raison, dans le cadre du cours de visualisation de données, est que j'ai été fascinée par la création d'une carte et que je souhaitais explorer et approfondir ce domaine.
 L'objectif de ce projet sera donc de répertorier, sur une carte de l'Europe et de l'Amérique du Nord, une série de traités conclus sur le sol européen. La visualisation permet de localiser des points sur une carte et de découvrir quelques anecdotes sur le traité en question.
 
@@ -18,13 +18,13 @@ Pour recueillir ces données, j’ai utilisé des ouvrages personnels ou recherc
 - "MANTOVANI, Mauro, 'Otan', in *Dictionnaire historique de la Suisse (DHS)*, consulté le 17.06.2026 (https://hls-dhs-dss.ch/fr/articles/041283/2011-10-12/)."
 - "CERUTTI, Mauro, 'Pacte de Varsovie', in *Dictionnaire historique de la Suisse*, consulté le 17.06.2026 (https://hls-dhs-dss.ch/fr/articles/041284/2015-01-27/)."
 
-Comme il s'agit d'une carte, un fichier geoJSON est nécessaire pour représenter le monde. Comme je me concentre sur l'Europe et, en partie, sur l'Amérique du Nord, j'ai décidé d'utiliser une carte ne représentant que ces deux régions. Pour ce fichier GeoJSON, nommé [EU.USA.geo.json] dans mon projet, j'ai utilisé ce site : https://geojson-maps.kyd.au/, qui permet de sélectionner uniquement les pays nécessaires ou directement les continents. 
+Comme il s'agit d'une carte, un fichier GeoJSON est nécessaire pour représenter le monde. Comme je me concentre sur l'Europe et, en partie, sur l'Amérique du Nord, j'ai décidé d'utiliser une carte ne représentant que ces deux régions. Pour ce fichier GeoJSON, nommé [EU.USA.geo.json] dans mon projet, j'ai utilisé ce site : https://geojson-maps.kyd.au/, qui permet de sélectionner uniquement les pays nécessaires ou directement les continents. 
 
 ### 1.1 Présentation des données 
 Les données collectées peuvent être consultées dans le fichier CSV intitulé [Tableau_traités.csv]. On y trouve les données suivantes: 
 1) id : même si cela n'apparaît pas dans l'affichage, j'ai attribué un identifiant à chaque traité, simplement pour mettre de l'ordre dans la liste. 
 
-2) nom_traité : il s'agit du nom du traité. Comme nous l'avons déjà mentionné, le terme « traité » est polysémique ; on trouve donc d'autres appellations telles que « accord », « pacte » ou « conférence ». Il convient de noter que le nom du document reprend souvent le lieu où les parties se sont réunies.
+2) nom_traité : il s'agit du nom du traité. Comme nous l'avons déjà mentionné, le terme « traité » est polysémique ; on trouve donc d'autres appellations, telles que « accord », « pacte » ou « conférence ». Il convient de noter que le nom du document reprend souvent le lieu où les parties se sont réunies.
 
 3) année: la date à laquelle l'accord a été signé. Il convient de noter que, souvent, la date peut faire référence à la signature d'un premier document d'accord, mais que l'entrée en vigueur n'intervient qu'après la ratification de ce document. Celle-ci peut en effet avoir lieu ultérieurement, parfois même plusieurs mois plus tard. Dans ce cas, on se réfère à la date de signature de l'accord. 
 
@@ -46,7 +46,7 @@ Comme j'avais créé moi-même le fichier CSV, je n'ai pas eu à effectuer de pr
 
 ## 2. Explication de la visualisation produite 
 ### 2.1 index.html
-Pour mon projet, j'ai décidé d'utiliser le script comme module (type="module") afin de pouvoir utiliser await directement pour charger les données, comme on peut le voir dans la première image : <br> ![html](images/2.HTML.png) <br>
+Pour mon projet, j'ai décidé d'utiliser le script comme module (type="module") afin de pouvoir utiliser "await" directement pour charger les données, comme on peut le voir dans la première image : <br> ![html](images/2.HTML.png) <br>
 
 Le reste du code est visible sur cette image : <br> ![html](images/1.HTML.png) <br>
     J'ai décidé de créer directement dans le code HTML le fichier SVG contenant la carte. Cela m'a également permis d'appliquer directement le style via CSS (voir le code). En réalité, j'ai rédigé le texte à l'intérieur de la balise "body" après avoir créé tout le code nécessaire à l'affichage de la carte. J'ai jugé utile d'ajouter directement sur la page le titre du travail ainsi qu'une brève description (introduction) de ce que l'on peut y trouver. J’ai ensuite ajouté une liste de tous les traités répertoriés, afin d’offrir un aperçu général du contenu, que l’on peut ensuite approfondir en consultant les différents cercles. Pour les balises "body", "svg", "h1", "h2" et "#intro", j’ai utilisé des styles CSS (cf. style.css).
@@ -63,7 +63,7 @@ La première étape a consisté à importer les données CSV et GeoJSON : <br> !
 Le point 4 correspond à la création d'un groupe "g" au sein du SVG : <br> ![point_4](images/4_JS.png) <br>
     Ce groupe "g" regroupe tous les éléments de la carte, c'est-à-dire les pays et les cercles (cf. point 5).
     J'ai ensuite procédé au tracé de tous les pays à l'aide de « g.selectAll(« path ») (...) ». Il s'agit d'une jointure de données : geoData.features est le tableau des pays du GeoJSON, dans lequel chaque pays devient un chemin. Le pathGenerator convertit les données géographiques au format SVG et les deux « style » correspondent à la couleur de remplissage et à la couleur de contour.
-    Au cours de ces étapes, je me suis rendu compte qu’il serait intéressant et certainement plus interactif d’ajouter un zoom sur la carte, notamment pour mieux voir les cercles (ceux-ci sont créés ultérieurement). Le zoom s’applique à l’ensemble du conteneur "g", ce qui permet de déplacer et de redimensionner l’ensemble en même temps. Pour la création du zoom, j’ai consulté ce site https://d3js.org/d3-zoom et je me suis fait aider par NotebookLM, une IA, pour l’organisation des informations (cette partie du zoom est donc créée avec l’aide de l’IA). <.scaleExtent> limite le zoom entre un minimum de 8x et un maximum de 12x. <.on> est l’événement qui est créé. Ces valeurs ont été choisies afin de permettre une visualisation suffisamment détaillée de l'Europe sans perdre le contexte géographique général. 
+    Au cours de ces étapes, je me suis rendu compte qu’il serait intéressant et certainement plus interactif d’ajouter un zoom sur la carte, notamment pour mieux voir les cercles (ceux-ci sont créés ultérieurement). Le zoom s’applique à l’ensemble du conteneur "g", ce qui permet de déplacer et de redimensionner l’ensemble en même temps. Pour la création du zoom, j’ai consulté ce site https://d3js.org/d3-zoom et je me suis fait aider par NotebookLM, une IA, pour l’organisation des informations (cette partie du zoom est donc créée avec l’aide de l’IA). <.scaleExtent> limite le zoom entre un minimum de 1x et un maximum de 12x. <.on> est l’événement qui est créé. Ces valeurs ont été choisies afin de permettre une visualisation suffisamment détaillée de l'Europe sans perdre le contexte géographique général. 
 
 Le point numéro 5 consiste à créer des cercles-points pour chaque traité : <br> ![point_5](images/5_JS.png) <br>
     Les quatre premières lignes de cette partie du code servent à sélectionner tous les cercles du groupe "g", à relier les données du fichier CSV et à créer un cercle pour chaque élément trouvé.
@@ -77,18 +77,16 @@ Le dernier point, le numéro 6, sert à ajouter un écouteur d'événement à ch
     Enfin, j’ai trouvé la propriété « .html » sur https://devdocs.io/d3~7/d3-selection#selection_html, qui me permet d’insérer du code HTML formaté à l’intérieur de "div". J’ai utilisé « ${} » pour insérer des variables dans la chaîne de caractères et j’ai sélectionné chaque colonne du fichier CSV pour importer les données via d.nom_traité, d.année, d.lieu, etc.
 
 Une fois tout cela terminé, j'ai essayé de régler deux derniers détails. Le premier concerne la taille des cercles et leur rayon, car ils étaient trop grands et ne me plaisaient pas. La deuxième modification concerne l'ajustement de certaines coordonnées. 
-    Comme on peut le voir sur le fichier CSV ou sur la carte, il y a plusieurs cercles dans la région de Paris : certains se chevauchaient complètement (les traités ayant été signés à Paris) et d'autres ont été conclus dans les environs de la capitale française. J'ai donc modifié manuellement les coordonnées de ces traités pour les espacer davantage. J’ai cherché sur Internet des solutions pour espacer les cercles, mais elles me semblaient un peu trop compliquées pour mes compétences très basiques. 
+    Comme on peut le voir sur le fichier CSV ou sur la carte, il y a plusieurs cercles dans la région de Paris : certains se chevauchaient complètement (les traités ayant été signés à Paris) et d'autres ont été conclus dans les environs de la capitale française. J'ai donc modifié manuellement les coordonnées de ces traités pour les espacer davantage. J’ai cherché sur Internet des solutions pour espacer les cercles, mais elles me semblaient un peu trop compliquées pour mes compétences de base. 
     Dans le cas des deux traités signés au Vatican (cf. fichier CSV ou carte), j’ai procédé de la même manière : j’ai espacé manuellement les points afin de rendre les cercles plus visibles.
 
 Cette partie 6 a ensuite été modifiée afin de rendre la carte plus interactive. Une commande a été ajoutée pour permettre de fermer la fenêtre dans laquelle s'affichent les informations relatives au traité, via la fonction  <button style="position: absolute; right: 10px; top: 10px; cursor: pointer;" onclick="this.parentNode.style.display=“none”">X</button>. Il est en effet intéressant d’utiliser la balise HTML pour ajouter directement cette fonctionnalité.
 Le reste du code a pour objectif suivant : en cliquant sur le point rose, les pays ayant signé ce traité changent de couleur.
     Dans un premier temps, j’ai dû adapter certains noms de traités par rapport à ce qui figurait dans le document GeoJSON. J’ai moi-même pris conscience des problèmes de traduction potentiels et j’ai demandé conseil à Gemini sur la manière d’écrire correctement les noms des pays. <br> ![html](images/7.JS.png) <br>
     Ensuite, pour la partie concernant la boucle ForEach, je me suis presque entièrement aidée de l’IA (Gemini). <br> ![html](images/8.JS.png) <br>
-En général, le principe m’était clair, mais le transposer en code était un peu trop difficile pour moi. Le processus est le suivant : après avoir sélectionné les pays et associé les acteurs, ces derniers sont colorés en orange lorsque l’on clique sur le point rose, comme on peut le voir dans l’exemple suivant :
+En général, le principe était clair, mais le transposer en code était un peu trop difficile pour moi. Le processus est le suivant : après avoir sélectionné les pays et associé les acteurs, ces derniers sont colorés en orange lorsque l’on clique sur le point rose, comme on peut le voir dans l’exemple suivant :
     <br> ![html](images/9.JS.png)<br>
-On obtient ainsi une carte encore plus interactive.
-
-La partie désormais intitulée 6.3 correspond au code décrit précédemment.
+On obtient ainsi une carte encore plus interactive. La partie désormais intitulée 6.3 correspond au code décrit précédemment.
 
 ## 3. Conclusion: limites et perspectives
 Avec ce projet, j'ai cherché à explorer le fonctionnement de la création de cartes à l'aide de D3. J'ai trouvé l'ensemble du processus très intéressant et le fait de développer un projet personnel m'a permis de mieux comprendre la logique de fonctionnement de D3, en particulier la création de SVG et d'éléments (tels que les cercles), mais aussi de commencer à appréhender le caractère dynamique des données.
